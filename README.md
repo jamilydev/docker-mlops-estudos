@@ -1,16 +1,16 @@
-🐳 Docker para MLOps: Do Dockerfile ao Compose
+#🐳 Docker para MLOps: Do Dockerfile ao Compose
 
 Este guia foi elaborado para acompanhar o estudo de MLOps do Instituto de Informática (INF/UFG) e do CEIA. Se você está acompanhando esta aula, utilize este material como o seu mapa de navegação pelos conceitos de containerização.
-
-📌 1. O Ponto de Partida: Por que estamos aqui? 💻
+---
+##📌 1. O Ponto de Partida: Por que estamos aqui? 💻
 
 Você já tentou rodar um modelo de IA de um colega e ele falhou por erro de "módulo não encontrado" ou versão de biblioteca?
 
 O Cenário Comum: Projetos de ML dependem de versões exatas de scikit-learn, pandas, PyTorch e até drivers específicos de GPU.
 
 A Solução com Docker: Criamos um ambiente imutável. O que você vê rodando hoje, rodará exatamente da mesma forma daqui a 10 anos, em qualquer servidor do mundo.
-
-🎂 2. Entendendo o Docker (Analogia da Cozinha)
+---
+##🎂 2. Entendendo o Docker (Analogia da Cozinha)
 
 Para não esquecer mais como o Docker funciona, imagine que estamos em uma cozinha profissional:
 
@@ -20,10 +20,10 @@ Imagem (O Bolo): É o resultado do "cozimento" (build). É um pacote fechado e p
 
 Container (A Fatia): É o que realmente consumimos. Podemos tirar várias fatias (containers) do mesmo bolo (imagem) ao mesmo tempo.
 
-📂 3. O Que Veremos na Prática
+##📂 3. O Que Veremos na Prática
 
 Nesta atividade, vamos observar a construção de uma infraestrutura que une Inferência + Persistência:
-
+```
 WorkShop_Docker/
 ├── backend/
 │   ├── main.py          # O "cérebro" (API FastAPI que serve o modelo)
@@ -31,7 +31,7 @@ WorkShop_Docker/
 │   └── requirements.txt # A lista de compras (Dependências Python)
 ├── Dockerfile           # A receita para o nosso backend
 └── docker-compose.yml   # O maestro que coordena a API e o Banco
-
+```
 
 🚀 4. Acompanhando a Execução
 
@@ -50,11 +50,13 @@ Porta de Saída: A aplicação se comunica com o mundo pela porta 8000.
 Comandos que serão demonstrados:
 
 # Build: Criando o "Bolo" (Imagem)
+```bash
 docker build -t mlops-model-v1 .
-
+```
 # Run: Servindo a "Fatia" (Container)
+```bash
 docker run -p 8080:8000 mlops-model-v1
-
+```
 
 Acesse o Swagger (documentação da API) em: http://localhost:8080/docs
 
@@ -77,43 +79,7 @@ docker-compose up -d
 docker-compose ps
 
 
-📄 5. Guia de Consulta Rápida (Cheat Sheet)
 
-Categoria
-
-Comando
-
-O que faz?
-
-Build
-
-docker build -t nome .
-
-Transforma a receita (Dockerfile) em imagem.
-
-Rodar
-
-docker run -p 80:80 img
-
-Inicia um container baseado em uma imagem.
-
-Status
-
-docker ps
-
-Mostra o que está "vivo" no momento.
-
-Compose
-
-docker-compose up -d
-
-Sobe todos os serviços em segundo plano.
-
-Limpeza
-
-docker system prune
-
-Remove imagens e containers antigos para liberar espaço.
 
 👥 Equipe (Grupo de Estudos MLOps)
 
