@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  # ── Serviço 1: API FastAPI ──────────────────────────────
+  backend:
+    build: .                          # usa o Dockerfile na raiz do projeto
+    ports:
+      - "8080:8000"                   # localhost:8080 → container:8000
+    environment:
+      DB_HOST: db                     # Docker resolve "db" como DNS interno
+      DB_NAME: imoveisdb
+      DB_USER: postgres
+      DB_PASSWORD: senha123
+    depends_on:
+      - db                            # aguarda o container do banco iniciar
+    restart: on-failure               # reinicia se a API subir antes do banco aceitar conexões
+
+  # ── Serviço 2: Banco PostgreSQL ─────────────────────────
+  db:
+    image: postgres:15                # imagem oficial — não precisa de Dockerfile
+    environment:
+      POSTGRES_DB: imoveisdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha123
+    volumes:
+      - pgdata:/var/lib/postgresql/data   # dados persistem mesmo após docker-compose down
+
+# ── Volume nomeado ──────────────────────────────────────
+volumes:
+  pgdata:
