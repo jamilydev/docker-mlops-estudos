@@ -1,8 +1,8 @@
-#🐳 Docker para MLOps: Do Dockerfile ao Compose
+# 🐳 Docker para MLOps: Do Dockerfile ao Compose
 
 Este guia foi elaborado para acompanhar o estudo de MLOps do Instituto de Informática (INF/UFG) e do CEIA. Se você está acompanhando esta aula, utilize este material como o seu mapa de navegação pelos conceitos de containerização.
 ---
-##📌 1. O Ponto de Partida: Por que estamos aqui? 💻
+## 📌 1. O Ponto de Partida: Por que estamos aqui? 💻
 
 Você já tentou rodar um modelo de IA de um colega e ele falhou por erro de "módulo não encontrado" ou versão de biblioteca?
 
@@ -10,7 +10,7 @@ O Cenário Comum: Projetos de ML dependem de versões exatas de scikit-learn, pa
 
 A Solução com Docker: Criamos um ambiente imutável. O que você vê rodando hoje, rodará exatamente da mesma forma daqui a 10 anos, em qualquer servidor do mundo.
 ---
-##🎂 2. Entendendo o Docker (Analogia da Cozinha)
+## 🎂 2. Entendendo o Docker (Analogia da Cozinha)
 
 Para não esquecer mais como o Docker funciona, imagine que estamos em uma cozinha profissional:
 
@@ -20,7 +20,7 @@ Imagem (O Bolo): É o resultado do "cozimento" (build). É um pacote fechado e p
 
 Container (A Fatia): É o que realmente consumimos. Podemos tirar várias fatias (containers) do mesmo bolo (imagem) ao mesmo tempo.
 
-##📂 3. O Que Veremos na Prática
+## 📂 3. O Que Veremos na Prática
 
 Nesta atividade, vamos observar a construção de uma infraestrutura que une Inferência + Persistência:
 ```
@@ -33,9 +33,9 @@ WorkShop_Docker/
 └── docker-compose.yml   # O maestro que coordena a API e o Banco
 ```
 
-🚀 4. Acompanhando a Execução
+## 🚀 4. Acompanhando a Execução
 
-🔹 Etapa 1: A Construção da Imagem (Dockerfile)
+### 🔹 Etapa 1: A Construção da Imagem (Dockerfile)
 
 Nesta fase, transformamos código puro em um artefato pronto para produção.
 
@@ -49,18 +49,18 @@ Porta de Saída: A aplicação se comunica com o mundo pela porta 8000.
 
 Comandos que serão demonstrados:
 
-# Build: Criando o "Bolo" (Imagem)
+### Build: Criando o "Bolo" (Imagem)
 ```bash
 docker build -t mlops-model-v1 .
 ```
-# Run: Servindo a "Fatia" (Container)
+### Run: Servindo a "Fatia" (Container)
 ```bash
 docker run -p 8080:8000 mlops-model-v1
 ```
 
 Acesse o Swagger (documentação da API) em: http://localhost:8080/docs
 
-🔹 Etapa 2: Orquestração (Docker Compose)
+### 🔹 Etapa 2: Orquestração (Docker Compose)
 
 Aqui, vemos como múltiplos containers conversam entre si.
 
@@ -72,16 +72,16 @@ Rede Interna: O backend sabe onde o banco de dados está apenas chamando-o pelo 
 
 Comandos que serão demonstrados:
 
-# Sobe todo o sistema (API + Banco) de uma vez
+### Sobe todo o sistema (API + Banco) de uma vez
+```bash
 docker-compose up -d
-
-# Mostra o status de saúde dos serviços
+```
+### Mostra o status de saúde dos serviços
+```bash
 docker-compose ps
+```
 
-
-
-
-👥 Equipe (Grupo de Estudos MLOps)
+### 👥 Equipe (Grupo de Estudos MLOps)
 
 Jamily Vieira Gonçalves
 
